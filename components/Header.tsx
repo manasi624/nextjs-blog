@@ -1,0 +1,40 @@
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import pplogo from "../static/pplogo.png"
+
+function Header() {
+  return (
+    <header className="w-screen bg-opacity-25 bg-purple-100 flex flex-row items-center justify-between space-x-2 font-bold px-4 md:px-10 py-5 z-100">
+      <div className="flex items-center space-x-2 z-100">
+        <Link href="/">
+          <Image
+            className="rounded-full"
+            width={100}
+            height={80}
+            src={pplogo}
+            alt="logo"
+          />
+        </Link>
+        <h3 className="text-xl hidden md:block md:text-2xl">RisingStar</h3>
+      </div>
+      <div className="flex flex-row items-center justify-evenly px-2 z-100">
+        <Link
+          href={"/posts"}
+          className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
+        >
+          <h2 className="hidden md:block">Weekly blogs to your inbox</h2>
+          <h2 className="block text-sm sm:hidden">Subscribe</h2>
+        </Link>
+        <div className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg">
+          <h2 className="text-sm">Login</h2>
+        </div>
+        <div className="space-x-3 hidden md:block bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg">
+          <h2 className="text-sm ">Signup</h2>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export default Header;

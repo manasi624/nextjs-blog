@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: rgb(0, 0, 0);
+  --background-start-rgb: rgb(238, 238, 238);
+  --background-end-rgb: rgb(255, 255, 255);
+
+  --primary-color: rgb(150, 75, 192);
+  /* Purple */
+  --secondary-color: rgb(254 233 203);
+  /* Yellow */
+  --button-color: rgb(33, 150, 243);
+  /* Blue */
+  --typography-color: rgb(33, 33, 33);
+  /* Dark Gray */
+  --middle-color: rgb(169, 169, 169);
+  /* Middle Gray */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+/* Additional styles using the defined variables */
+a {
+  color: rgb(var(--primary-color));
+}
+
+button {
+  background-color: rgb(var(--button-color));
+  color: rgb(var(--foreground-rgb));
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(var(--typography-color));
+}
+
+.middle-section {
+  background-color: rgb(var(--middle-color));
+}
+
+/* You can use the --secondary-color for other elements as needed. */
