@@ -13,3 +13,17 @@ export interface PostState{
     selectedPost: Post | null,
     filteredPosts: Post[]
 }
+
+export interface User{
+    uid:string,
+    email: string,
+    username:string,
+    password:string
+}
+
+
+export interface UserState{
+    user:User, 
+    loading:boolean,
+    error:string| null
+}

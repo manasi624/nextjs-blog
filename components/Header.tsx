@@ -1,9 +1,33 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import pplogo from "../static/pplogo.png"
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/app/store";
+import { loginUser, logoutUser } from "@/features/userSlice";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import {auth} from "../app/firebase"
 
 function Header() {
+
+  const {user, loading, error} = useSelector((state:RootState) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (userNew) => {
+      if (userNew != null) {
+        dispatch(loginUser({
+          email: userNew.email,
+          username: userNew.displayName,
+          uid: userNew.uid,
+          password: "password"
+        }))
+        console.log("setting user", userNew.uid, userNew.email, userNew.displayName);
+      }
+    });
+  }, [loading, dispatch]);
+
   return (
     <header className="w-screen bg-opacity-25 bg-purple-100 flex flex-row items-center justify-between space-x-2 font-bold px-4 md:px-10 py-5 z-100">
       <div className="flex items-center space-x-2 z-100">
@@ -26,12 +50,22 @@ function Header() {
           <h2 className="hidden md:block">Weekly blogs to your inbox</h2>
           <h2 className="block text-sm sm:hidden">Subscribe</h2>
         </Link>
-        <div className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg">
-          <h2 className="text-sm">Login</h2>
-        </div>
-        <div className="space-x-3 hidden md:block bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg">
-          <h2 className="text-sm ">Signup</h2>
-        </div>
+        {!loading && user && user.uid === "" && (
+          <Link
+            href="/login"
+            className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
+          >
+            <h2 className="text-sm">Login</h2>
+          </Link>
+        )}
+        {!loading && user && user.uid !== "" && (
+          <div
+            onClick={() => dispatch(logoutUser())}
+            className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
+          >
+            <h2 className="text-sm">Logout</h2>
+          </div>
+        )}
       </div>
     </header>
   );

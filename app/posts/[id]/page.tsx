@@ -8,13 +8,16 @@ import { Post } from "@/typing";
 import { fetchAsyncPosts } from "@/features/dataSlice";
 import Tag from "@/components/Tag";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 
 export default function Post({params}: {params: {id:string}}) {
   const postId = parseInt(params.id);
   const dispatch:AppDispatch = useDispatch();
+  const router = useRouter();
   const { posts, loading, error } = useSelector((state: RootState) => state.data);
+  const {user, loading:userLoading, error:userError} = useSelector((state:RootState) => state.user);
   
   const [selected, setSelected] = useState<Post|null>(null);
 
@@ -30,6 +33,13 @@ export default function Post({params}: {params: {id:string}}) {
 
     fetchDt();
   }, [dispatch, postId, posts]);
+
+    useEffect(() => {
+      if(!user.uid){
+        router.back();
+      }
+      console.log(user);
+    }, [user, dispatch]);
 
 
   const dummyCard = {

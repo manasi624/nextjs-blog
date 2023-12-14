@@ -1,6 +1,10 @@
+import { RootState } from "@/app/store";
 import { Post } from "@/typing";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 
 type Props = {
@@ -8,10 +12,23 @@ type Props = {
 }
 
 export default function Card({post}: Props){
+  const {user, loading:userLoading, error:userError} = useSelector((state:RootState) => state.user);
+
+  const router = useRouter();  
+  const handleRedirect = ()=>{
+    if(!user.uid){
+      router.push('/login');
+    }else{
+      router.push(`/posts/${post.id}`);
+    }
+    
+  }
+
+
     return (
-      <Link href={`posts/${post.id}`}
+      <div onClick={handleRedirect}
         key={post.title}
-        className="flex flex-col rounded-lg shadow-lg overflow-hidden"
+        className="flex flex-col rounded-lg shadow-lg overflow-hidden hover:cursor-pointer hover:shadow-sm"
       >
         {/* <div className="flex-shrink-0">
           <Image
@@ -37,6 +54,6 @@ export default function Card({post}: Props){
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     );
 }
