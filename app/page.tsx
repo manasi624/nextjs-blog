@@ -9,13 +9,14 @@ export default function Home() {
       <div className="mt-10">
         <div className="m-4 z-10 snap-start">
           <Hero />
+        <div className="w-full absolute top-[30%] bg-[#F7ABBA]/20 left-0 h-[400px] -skew-y-12" />
         </div>
         <div className="m-4 z-10 mt-10 snap-center">
           <About />
         </div>
         <div className="m-4 z-10 mt-10 snap-end">
           <Blog />
-        </div>{" "}
+        </div>
       </div>
     </main>
   );

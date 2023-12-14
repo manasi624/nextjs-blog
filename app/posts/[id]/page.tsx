@@ -7,6 +7,7 @@ import character from "../../../static/char4.png"
 import { Post } from "@/typing";
 import { fetchAsyncPosts } from "@/features/dataSlice";
 import Tag from "@/components/Tag";
+import Link from "next/link";
 
 
 
@@ -91,56 +92,67 @@ export default function Post({params}: {params: {id:string}}) {
 
 
   return (
-    <div className="max-w-7xl flex w-screen px-10 flex-col items-center justify-center my-8">
-      <div className="flex flex-col md:flex-row mx-auto w-auto rounded-lg shadow-lg overflow-hidden">
-        <div className="flex-shrink-0 flex items-center justify-center">
-          <Image
-            className="h-48 w-full object-cover rounded-md"
-            width={500}
-            height={400}
-            src="https://source.unsplash.com/featured/500x400"
-            alt="Post Photo"
-          />
-        </div>
-        <div className="flex-1 bg-white p-6 flex flex-col justify-between">
-          <div className="flex-1">
-            <p className="text-sm font-medium text-indigo-600">
-              <a href={dummyCard.category.href} className="hover:underline">
-                {dummyCard.category.name}
-              </a>
-            </p>
-            <a href="#" className="block mt-2">
-              <p className="text-xl font-semibold text-gray-900">
-                <Tag tagline={selected?.title || ""} color="rgb(254 233 203)" />
-              </p>
-              <p className="mt-3 text-base text-gray-500">
-                {selected?.body}
-                {selected?.body}
-              </p>
-            </a>
+    <div className="">
+      <div className="max-w-7xl flex w-screen px-10 flex-col items-left justify-center mb-8">
+          <Link href={"/posts"} className="hover:shadow-sm">
+            <Tag
+              tagline="&#x21d0; Back to Posts"
+              color="rgb(241 127 61 / 15%)"
+            />
+          </Link>
+        <div className="flex flex-col md:flex-row mx-auto w-auto rounded-lg shadow-lg overflow-hidden">
+          <div className="flex-shrink-0 flex items-center justify-center">
+            <Image
+              className="h-48 w-full object-cover rounded-md"
+              width={500}
+              height={400}
+              src="https://source.unsplash.com/featured/500x400"
+              alt="Post Photo"
+            />
           </div>
-          <div className="mt-6 flex items-center">
-            <div className="flex-shrink-0">
-              <a href={dummyCard.author.href}>
-                <span className="sr-only">{dummyCard.author.name}</span>
-                <Image
-                  className="h-10 w-10 rounded-full"
-                  height={15}
-                  width={15}
-                  src={character}
-                  alt="User"
-                />
-              </a>
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900">
-                <a href={dummyCard.author.href} className="hover:underline">
-                  {dummyCard.author.name}
+          <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-indigo-600">
+                <a href={dummyCard.category.href} className="hover:underline">
+                  {dummyCard.category.name}
                 </a>
               </p>
-              <div className="flex space-x-1 text-sm text-gray-500">
-                <time dateTime={dummyCard.datetime}>{dummyCard.date}</time>
-                <span aria-hidden="true">&middot;</span>
+              <a href="#" className="block mt-2">
+                <div className="text-xl font-semibold text-gray-900">
+                  <Tag
+                    tagline={selected?.title || ""}
+                    color="rgb(254 233 203)"
+                  />
+                </div>
+                <p className="mt-3 text-base text-gray-500">
+                  {selected?.body}
+                  {selected?.body}
+                </p>
+              </a>
+            </div>
+            <div className="mt-6 flex items-center">
+              <div className="flex-shrink-0">
+                <a href={dummyCard.author.href}>
+                  <span className="sr-only">{dummyCard.author.name}</span>
+                  <Image
+                    className="h-10 w-10 rounded-full"
+                    height={15}
+                    width={15}
+                    src={character}
+                    alt="User"
+                  />
+                </a>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium text-gray-900">
+                  <a href={dummyCard.author.href} className="hover:underline">
+                    {dummyCard.author.name}
+                  </a>
+                </p>
+                <div className="flex space-x-1 text-sm text-gray-500">
+                  <time dateTime={dummyCard.datetime}>{dummyCard.date}</time>
+                  <span aria-hidden="true">&middot;</span>
+                </div>
               </div>
             </div>
           </div>

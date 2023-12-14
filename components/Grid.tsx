@@ -32,7 +32,6 @@ export default function Grid({posts}: Props){
           ))}
         </div>
 
-
         {/* Pagination */}
         <div className="m-4 flex flex-row items-center justify-center p-4">
           <div className=" my-2 pagination flex flex-row items-center text-center justify-center px-4">
@@ -46,7 +45,7 @@ export default function Grid({posts}: Props){
               }}
               disabled={pagenum === 1}
             >
-              🔙 Previous
+              &#x21d0; Previous
             </button>
             <div>{pagenum}</div>
             <button
@@ -58,7 +57,7 @@ export default function Grid({posts}: Props){
               }}
               disabled={pagenum === Math.ceil(posts.length / PAGE_SIZE)}
             >
-              Next 🔜
+              Next &#x21d1;
             </button>
           </div>
         </div>

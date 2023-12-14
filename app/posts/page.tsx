@@ -14,22 +14,31 @@ export default function Posts() {
   const { posts, loading, error } = useSelector((state: RootState) => state.data);
 
   useEffect(()=>{
-    if(posts.length == 0){
-      dispatch(fetchAsyncPosts());
-    }
+    dispatch(fetchAsyncPosts());
+  }, [dispatch])
+  useEffect(()=>{
+    setData(posts);
   }, [posts])
 
-  const [data, setData] = useState<Post[]>(posts);
+
+  const [data, setData] = useState<Post[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const handleSearch = async (query:string) => {
-    const filtered = await query ? data?.filter((post) => {
-      post.title.toLowerCase().includes(query.toLowerCase()) ||
-      post.body.toLowerCase().includes(query.toLowerCase())
-    }): posts;
-    
+  const handleSearch = (query: string) => {
+    let filtered = posts;
+    if (query) {
+      filtered = posts.filter(
+        (post) =>
+          post.title.toLowerCase().includes(query.toLowerCase()) ||
+          post.body.toLowerCase().includes(query.toLowerCase())
+      );
+    }
     setData(filtered);
-  }
-  handleSearch(searchQuery);
+    // console.log("data", data);
+  };
+
+  useEffect(()=>{
+    handleSearch(searchQuery);
+  }, [searchQuery])
 
 // Loading State
   if (loading) {

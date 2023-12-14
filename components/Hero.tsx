@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="flex flex-col items-center">
           <Tag
             tagline="Matching talent with Opportunity"
-            color="rgb(241 127 61 / 5%)"
+            color="rgb(241 127 61 / 15%)"
           />
         </div>
         <div className="text-4xl sm:text-7xl font-extrabold pb-6">
