@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Tag from "./Tag";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -28,9 +29,9 @@ export default function Hero() {
           WE HELP PROFESSIONALS AND BUSINESSES IN THE GAMING INDUSTRY
         </h2>
         <div>
-          <button className="w-fit h-fit bg-orange-400 p-2 m-2 rounded-lg shadow-sm">
+          <Link href={"/posts"} className="w-fit h-fit bg-orange-400 p-2 m-2 rounded-lg shadow-sm">
             <b>Get Started, It's free</b>
-          </button>
+          </Link>
           <p className="text-sm text-stone-600">
             Free 14 days trials,no credit card needed
           </p>

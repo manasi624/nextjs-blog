@@ -55,7 +55,7 @@ function Header() {
           className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
         >
           <h2 className="hidden md:block">Weekly blogs to your inbox</h2>
-          <h2 className="block text-sm sm:hidden">Subscribe</h2>
+          <h2 className="block text-sm sm:hidden">Blogs</h2>
         </Link>
         {!loading && user.uid === "" && (
           <Link

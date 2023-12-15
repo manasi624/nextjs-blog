@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Tag from "./Tag";
 import character from "../static/char4.png";
 import Notification from "./Notification";
+import Link from "next/link";
 
 export default function Blog() {
   return (
@@ -27,9 +28,9 @@ export default function Blog() {
           on the benefits for your users, not on the features.
         </h2>
         <div className="my-4 mb-8">
-          <button className="w-fit h-fit bg-orange-400 p-2 m-2 rounded-lg shadow-sm">
+          <Link href={"/posts"} className="w-fit h-fit bg-orange-400 p-2 m-2 rounded-lg shadow-sm">
             <b>Get Started, It's free</b>
-          </button>
+          </Link>
         </div>
         <div>
           <Notification

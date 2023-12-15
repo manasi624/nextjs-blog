@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div>
+          <div className='w-screen overflow-y-scroll overflow-x-hidden'>
             <div className='fixed top-0 z-100' style={{zIndex:100}}>
               <Header />
             </div>
