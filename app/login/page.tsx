@@ -43,7 +43,7 @@ export default function Login() {
               const { email, displayName, uid } = user;
               dispatch(loginUser({ email, username: displayName, uid }));
             }
-            router.back();
+            router.push('/posts');
           })
           .catch((error) => {
             const errorMessage = error.code.split("/")[1];
@@ -68,7 +68,7 @@ export default function Login() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen w-screen flex flex-col items-center justify-center bg-gray-100"
+      className="text-black dark:text-white min-h-screen w-screen flex flex-col items-center justify-center bg-light_tag_sky dark:bg-dark_bg_gray"
     >
       <Link href="/">
         <Image
@@ -79,7 +79,7 @@ export default function Login() {
           alt="logo"
         />
       </Link>
-      <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+      <div className="max-w-md w-full p-6 bg-light_bg dark:bg-dark_bg rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-4">Login</h2>
         <form onSubmit={HandleSignup}>
           <div className="mb-4">
@@ -93,7 +93,7 @@ export default function Login() {
               type="email"
               id="email"
               name="email"
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md text-black bg-gray-200"
               value={creds.email}
               onChange={changeHandler}
             />
@@ -109,24 +109,25 @@ export default function Login() {
               type="password"
               id="password"
               name="password"
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md text-black bg-gray-200"
               value={creds.password}
               onChange={changeHandler}
             />
           </div>
           <button
             type="submit"
-            className="w-full p-2 text-white rounded-md bg-orange-400 hover:shadow-md"
+            className="w-full p-2 text-white rounded-md bg-light_bg_button dark:bg-dark_bg_button  hover:shadow-md"
+            disabled={loading}
           >
             Login
           </button>
         </form>
         <div className="flex flex-row flex-nowrap justify-center items-center m-2 p-2">
-          <button className="p-2 mx-2 text-white rounded-md bg-orange-400 hover:shadow-md">
+          <button className="p-2 mx-2 text-white rounded-md bg-light_bg_button dark:bg-dark_bg_button hover:shadow-md">
             Google
           </button>
           <Link href="/signup">
-            <button className="p-2 mx-2 text-white rounded-md bg-orange-400 hover:shadow-md">
+            <button className="p-2 mx-2 text-white rounded-md bg-light_bg_button dark:bg-dark_bg_button hover:shadow-md">
               SignUp
             </button>
           </Link>

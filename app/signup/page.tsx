@@ -76,7 +76,7 @@ export default function SignUp() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen w-screen flex flex-col items-center justify-center bg-gray-100"
+      className="bg-light_bg_gray dark:bg-dark_bg_gray min-h-screen w-screen flex flex-col items-center justify-center"
     >
       <Link href="/">
         <Image
@@ -87,7 +87,7 @@ export default function SignUp() {
           alt="logo"
         />
       </Link>
-      <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+      <div className="max-w-md w-full p-6 bg-light_bg dark:bg-dark_bg rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-4">Sign Up</h2>
         <form onSubmit={HandleSignup}>
           <div className="mb-4">
@@ -101,7 +101,7 @@ export default function SignUp() {
               type="email"
               id="email"
               name="email"
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 text-black w-full border rounded-md bg-gray-200"
               placeholder="Enter your email"
               value={creds.email}
               onChange={changeHandler}
@@ -118,13 +118,13 @@ export default function SignUp() {
               type="text"
               id="username"
               name="username"
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 text-black w-full border bg-gray-200 rounded-md"
               placeholder="Enter your username"
               value={creds.username || ""}
               onChange={changeHandler}
             />
           </div>
-          <div className="mb-4">
+          <div className="my-4">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-600"
@@ -135,7 +135,7 @@ export default function SignUp() {
               type="password"
               id="password"
               name="password"
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 text-black bg-gray-200 p-2 w-full border rounded-md"
               placeholder="Enter your password"
               value={creds.password}
               onChange={changeHandler}
@@ -143,17 +143,18 @@ export default function SignUp() {
           </div>
           <button
             type="submit"
-            className="w-full p-2 text-white rounded-md bg-orange-400 hover:shadow-md"
+            className="w-full p-2 text-white rounded-md bg-light_bg_button dark:bg-dark_bg_button hover:shadow-md"
+            disabled={loading}
           >
             Signup
           </button>
         </form>
         <div className="flex flex-row flex-nowrap justify-center items-center m-2 p-2">
-          <button className="p-2 mx-2 text-white rounded-md bg-orange-400 hover:shadow-md">
+          <button className="p-2 mx-2 text-white rounded-md bg-light_bg_button dark:bg-dark_bg_button hover:shadow-md">
             Google
           </button>
           <Link href="/login">
-            <button className="p-2 mx-2 text-white rounded-md bg-orange-400 hover:shadow-md">
+            <button className="p-2 mx-2 text-white rounded-md bg-light_bg_button dark:bg-dark_bg_button hover:shadow-md">
               Login
             </button>
           </Link>

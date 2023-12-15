@@ -106,14 +106,11 @@ export default function Post({params}: {params: {id:string}}) {
 
 
   return (
-    <div className="">
+    <div className="text-black dark:text-white">
       <div className="max-w-7xl flex w-screen px-10 flex-col items-left justify-center mb-8">
-          <Link href={"/posts"} className="hover:shadow-sm">
-            <Tag
-              tagline="&#x21d0; Back to Posts"
-              color="rgb(241 127 61 / 15%)"
-            />
-          </Link>
+        <Link href={"/posts"} className="hover:shadow-sm">
+          <Tag tagline="&#x21d0; Back to Posts" color="rgb(241 127 61 / 15%)" />
+        </Link>
         <div className="flex flex-col md:flex-row mx-auto w-auto rounded-lg shadow-lg overflow-hidden">
           <div className="flex-shrink-0 flex items-center justify-center">
             <Image
@@ -124,7 +121,7 @@ export default function Post({params}: {params: {id:string}}) {
               alt="Post Photo"
             />
           </div>
-          <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+          <div className="flex-1 bg-light_bg dark:bg-dark_bg p-6 flex flex-col justify-between">
             <div className="flex-1">
               <p className="text-sm font-medium text-indigo-600">
                 <a href={dummyCard.category.href} className="hover:underline">

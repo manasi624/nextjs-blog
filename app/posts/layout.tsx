@@ -9,7 +9,7 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      <div className="flex flex-col mx-auto">
+      <div className="text-black dark:text-white flex flex-col mx-auto dark:text-white">
         <div className="mt-32">
           <Banner />
         </div>

@@ -42,7 +42,7 @@ const navigation: NavigationSection = {
 export default function Footer() {
   return (
     <footer
-      className=" w-full bg-white mt-10"
+      className="text-black dark:text-white w-full bg-light_bg  dark:bg-dark_bg mt-10"
       aria-labelledby="footer-heading"
     >
       <div className=" mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">

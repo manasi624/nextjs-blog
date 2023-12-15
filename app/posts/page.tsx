@@ -65,13 +65,11 @@ export default function Posts() {
       <div className="flex flex-col">
         <div className="flex m-4 p-4">
           <input
-            className="text-base w-full shadow-md bg-red-50 p-2 rounded-lg"
+            className="text-base text-black w-full shadow-md bg-light_bg_skin dark:bg-dark_bg_skin p-2 rounded-lg"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button
-            className="ml-3 bg-orange-400 p-2 rounded-lg shadow-sm"
-          >
+          <button className="ml-3 bg-light_bg_button dark:bg-dark_bg_button p-2 rounded-lg shadow-sm">
             Search
           </button>
         </div>
@@ -95,23 +93,21 @@ export default function Posts() {
   return (
     <div>
       <div>
-          <div className="flex m-4 p-4">
-            <input
-              className="text-base w-full shadow-md bg-red-50 p-2 rounded-lg"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button
-              onClick={() => handleSearch(searchQuery)}
-              className="ml-3 bg-orange-400 p-2 rounded-lg shadow-sm"
-            >
-              Search
-            </button>
-          </div>
-
+        <div className="flex m-4 p-4 text-black dark:text-white">
+          <input
+            className="text-base text-black w-full shadow-md bg-red-50 p-2 rounded-lg"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            onClick={() => handleSearch(searchQuery)}
+            className="ml-3 bg-light_bg_button dark:bg-dark_bg_button p-2 rounded-lg shadow-sm"
+          >
+            Search
+          </button>
         </div>
-        <Grid posts={data} />
-  </div>
-
+      </div>
+      <Grid posts={data} />
+    </div>
   );
 }

@@ -26,7 +26,7 @@ export default function Grid({posts}: Props){
     }
 
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col text-black dark:text-white">
         <div className="mt-12 max-w-3xl mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
           {data?.map((post) => (
             <Card post={post} key={post.id} />
@@ -58,7 +58,7 @@ export default function Grid({posts}: Props){
               }}
               disabled={pagenum === Math.ceil(posts.length / PAGE_SIZE)}
             >
-              Next &#8658;;
+              Next &#8658;
             </button>
           </div>
         </div>

@@ -25,18 +25,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className='w-screen overflow-y-scroll overflow-x-hidden'>
-            <div className='fixed top-0 z-100' style={{zIndex:100}}>
+          <div className="w-screen overflow-y-scroll overflow-x-hidden bg-light_bg dark:bg-dark_bg">
+            <div className="fixed top-0 z-100" style={{ zIndex: 100 }}>
               <Header />
             </div>
-            <div className='flex flex-col p-4'>
+            <div className="flex flex-col p-4 text-black dark:text-white">
               {children}
             </div>
             <Footer />
-            <ToastContainer autoClose={4000}/>
+            <ToastContainer autoClose={4000} />
           </div>
         </Providers>
       </body>
     </html>
-  )
+  );
 }

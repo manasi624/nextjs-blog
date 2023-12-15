@@ -57,7 +57,7 @@ function Header() {
   }
 
   return (
-    <header className="w-screen bg-opacity-25 bg-purple-100 flex flex-row items-center justify-between space-x-2 font-bold px-4 md:px-10 py-5 z-100">
+    <header className="w-screen bg-opacity-25 bg-light_bg_skin dark:bg-dark_bg_skin text-black dark:text-white flex flex-row items-center justify-between space-x-2 font-bold px-4 md:px-10 py-5 z-100">
       <div className="flex items-center space-x-2 z-100">
         <Link href="/">
           <Image
@@ -68,12 +68,14 @@ function Header() {
             alt="logo"
           />
         </Link>
-        <h3 className="text-xl hidden md:block md:text-2xl">RisingStar</h3>
+        <Link href="/">
+          <h3 className="text-xl hidden md:block md:text-2xl">RisingStar</h3>
+        </Link>
       </div>
       <div className="flex flex-row items-center justify-evenly px-2 z-100">
         <div
           onClick={handleBlog}
-          className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
+          className="space-x-3 bg-light_bg_skin dark:bg-dark_bg_gray text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
         >
           <h2 className="hidden md:block">Weekly blogs to your inbox</h2>
           <h2 className="block text-sm sm:hidden">Blogs</h2>
@@ -81,7 +83,7 @@ function Header() {
         {!loading && user.uid === "" && (
           <Link
             href="/login"
-            className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
+            className="space-x-3 bg-light_bg_skin dark:bg-dark_bg_gray text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
           >
             <h2 className="text-sm">Login</h2>
           </Link>
@@ -89,7 +91,7 @@ function Header() {
         {!loading && user.uid !== "" && (
           <div
             onClick={handleLogout}
-            className="space-x-3 bg-red-100 text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
+            className="space-x-3 bg-light_bg_skin dark:bg-dark_bg_gray text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
           >
             <h2 className="text-sm">Logout</h2>
           </div>

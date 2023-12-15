@@ -7,7 +7,7 @@ export default function About() {
 
   return (
     <div>
-      <div className=" flex flex-col space-y-0 items-center justify-center overflow-hidden text-center z-0">
+      <div className="text-black dark:text-white flex flex-col space-y-0 items-center justify-center overflow-hidden text-center z-0">
         <div className="text-center w-[400px] md:w-[800px] lg:w-[1000px] z-20">
           <motion.div
             initial={{ opacity: 0, y: 140 }}
@@ -17,7 +17,7 @@ export default function About() {
             className="mb-14"
           >
             <div className="flex flex-col items-center mt-40">
-              <Tag tagline="Who we are 🦸🏼" color="#f1f2f4" />
+              <Tag tagline="Who we are 🦸🏼" color="light_bg_skin" />
             </div>
             <h1 className="sm:text-5xl text-4xl  font-extrabold pb-6">
               About Us

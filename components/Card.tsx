@@ -28,9 +28,10 @@ export default function Card({post}: Props){
 
 
     return (
-      <div onClick={handleRedirect}
+      <div
+        onClick={handleRedirect}
         key={post.title}
-        className="flex flex-col rounded-lg shadow-lg overflow-hidden hover:cursor-pointer hover:shadow-sm"
+        className="text-black dark:text-white flex flex-col rounded-lg shadow-lg overflow-hidden hover:cursor-pointer hover:shadow-sm"
       >
         {/* <div className="flex-shrink-0">
           <Image
@@ -41,10 +42,10 @@ export default function Card({post}: Props){
             alt="Post Photo"
           />
         </div> */}
-        <div className="flex-1 bg-red-100 p-6 flex flex-col justify-between">
+        <div className="flex-1 bg-light_bg_card dark:bg-dark_bg_card p-6 flex flex-col justify-between">
           <div className="flex-1">
             <div className="block mt-2">
-              <p className="text-xl font-semibold text-gray-900">
+              <p className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                 {post?.title}
               </p>
               <p className="mt-3 text-base text-gray-500">{post?.body}</p>
@@ -52,7 +53,7 @@ export default function Card({post}: Props){
           </div>
           <div className="mt-6 flex items-center">
             <div className="flex-shrink-0">
-                <span className="sr-only">Adam George</span>
+              <span className="sr-only">Adam George</span>
             </div>
           </div>
         </div>
