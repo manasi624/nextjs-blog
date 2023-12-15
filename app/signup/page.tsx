@@ -14,14 +14,22 @@ import { toast } from "react-toastify";
 import { loginUser } from "@/features/userSlice";
 
 export default function SignUp() {
-  const [creds, setCreds] = useState<User>({uid:"", email:"", password:"", username:""});
-  const {user, loading, error} = useSelector((state:RootState) => state.user);
+  const [creds, setCreds] = useState<User>({
+    uid: "",
+    email: "",
+    password: "",
+    username: "",
+  });
+  const { user, loading, error } = useSelector(
+    (state: RootState) => state.user
+  );
   const router = useRouter();
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
+  // Checking auth state just after signup or completion of loading
   const dispatch = useDispatch();
   useEffect(() => {
     onAuthStateChanged(auth, (userNew) => {
@@ -38,6 +46,7 @@ export default function SignUp() {
     });
   }, [loading, dispatch]);
 
+  // Sign up function using firebase email and password
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (creds.email && creds.username && creds.password.length >= 6) {
@@ -45,13 +54,15 @@ export default function SignUp() {
         .then((userCredential) => {
           const user = userCredential.user;
 
+          // Success
           toast.success("Signup Successfull !", {
             position: toast.POSITION.BOTTOM_LEFT,
           });
-          if(auth.currentUser){
+          if (auth.currentUser) {
+            // UpdateProfile not working 😅
             updateProfile(auth.currentUser, { displayName: creds.username });
           }
-          router.push('/posts')
+          router.push("/posts");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -60,11 +71,13 @@ export default function SignUp() {
             position: toast.POSITION.BOTTOM_LEFT,
           });
         });
-    }else{
+    } else {
+
+      // Invalid credentials entered
       setCreds({ uid: "", email: "", password: "", username: "" });
-        toast.warn("Invalid Credentials !", {
-          position: toast.POSITION.BOTTOM_LEFT,
-        });
+      toast.warn("Invalid Credentials !", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }
   };
 
@@ -118,7 +131,7 @@ export default function SignUp() {
               name="username"
               className="mt-1 p-2 w-full border rounded-md"
               placeholder="Enter your username"
-              value={creds.username||""}
+              value={creds.username || ""}
               onChange={changeHandler}
             />
           </div>

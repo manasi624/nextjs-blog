@@ -15,6 +15,7 @@ export default function Posts() {
   const { posts, loading, error } = useSelector((state: RootState) => state.data);
 
   useEffect(()=>{
+    // Only load posts if required
     if(posts.length === 0 || !posts){
       dispatch(fetchAsyncPosts());
     }
@@ -26,6 +27,8 @@ export default function Posts() {
 
   const [data, setData] = useState<Post[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Handlesearch will not modify posts, it will use data state (temporary)
   const handleSearch = (query: string) => {
     let filtered = posts;
     if (query) {
@@ -38,17 +41,29 @@ export default function Posts() {
     setData(filtered);
   };
 
+  // Update data state whenever searchQuery updates
   useEffect(()=>{
     handleSearch(searchQuery);
   }, [searchQuery])
 
-// Loading State
+// Loading State for posts
   if (loading) {
     return (
       <div className="flex flex-col">
+        <div className="flex m-4 p-4">
+          <input
+            className="text-base w-full shadow-md bg-red-50 p-2 rounded-lg"
+            value=""
+          />
+          <button
+            className="ml-3 bg-orange-400 p-2 rounded-lg shadow-sm"
+          >
+            Search
+          </button>
+        </div>
         <div className="mt-12 max-w-3xl mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
           {[1, 2, 3]?.map((dummypost) => (
-              <LoadingCard key={dummypost} />
+            <LoadingCard key={dummypost} />
           ))}
         </div>
       </div>
@@ -81,7 +96,7 @@ export default function Posts() {
           </div>
 
         </div>
-    <Grid posts={data} />
+        <Grid posts={data} />
   </div>
 
   );

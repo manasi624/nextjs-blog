@@ -10,6 +10,7 @@ const PAGE_SIZE = 6;
 
 export default function Grid({posts}: Props){
 
+  // Inbuilt pagination implemented
     const [pagenum, setPagenum] = useState(1);
     const [data, setData] = useState<Post[]>(posts||[]);
     useEffect(()=>{

@@ -1,7 +1,5 @@
 import { RootState } from "@/app/store";
 import { Post } from "@/typing";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -15,10 +13,14 @@ export default function Card({post}: Props){
   const {user, loading:userLoading, error:userError} = useSelector((state:RootState) => state.user);
 
   const router = useRouter();  
+
+  // Single post redirect logic
   const handleRedirect = ()=>{
     if(!user.uid){
+      // if not authenticated, redirect to login page
       router.push('/login');
     }else{
+      // else continue
       router.push(`/posts/${post.id}`);
     }
     

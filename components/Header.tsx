@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 
 function Header() {
 
+  // Checking user auth state and updating after change in loading state
   const {user, loading, error} = useSelector((state:RootState) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {

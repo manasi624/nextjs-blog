@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 
-
+// Single post page
 export default function Post({params}: {params: {id:string}}) {
   const postId = parseInt(params.id);
   const dispatch:AppDispatch = useDispatch();
@@ -25,6 +25,7 @@ export default function Post({params}: {params: {id:string}}) {
   useEffect(() => {
     const fetchDt = async () => {
       if (!posts || posts.length === 0) {
+        // If posts is null or empty, fetch again
         await dispatch(fetchAsyncPosts());
       }
 
@@ -37,6 +38,7 @@ export default function Post({params}: {params: {id:string}}) {
 
     useEffect(() => {
       if(!user.uid){
+        // Not permitted to view post, if not logged in
         toast.warn("Login Needed !", {
           position: toast.POSITION.BOTTOM_LEFT,
         });

@@ -22,6 +22,7 @@ export default function Login() {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
+  // Updating User to state after login
   const dispatch = useDispatch();
   useEffect(() => {
     onAuthStateChanged(auth, (userNew) => {
@@ -41,12 +42,14 @@ export default function Login() {
 
   const router = useRouter();
 
+  // Sign in function using firebase email and password
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
       if (creds.email && creds.password.length >= 6) {
         // console.log(creds);
         signInWithEmailAndPassword(auth, creds.email, creds.password)
           .then((userCredential) => {
+            // Success
             const user = userCredential.user;
             toast.success("Logged in Successfully !", {
               position: toast.POSITION.BOTTOM_LEFT,
