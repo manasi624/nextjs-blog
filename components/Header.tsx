@@ -20,7 +20,8 @@ function Header() {
       if (userNew != null) {
         const {email, displayName, uid}= userNew;
         dispatch(loginUser({ email, username:displayName, uid}))
-        console.log("setting user", userNew.uid, userNew.email, userNew.displayName);
+
+        // console.log("setting user", userNew.uid, userNew.email, userNew.displayName);
       }
     });
   }, [loading, dispatch]);

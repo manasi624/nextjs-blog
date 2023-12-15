@@ -38,7 +38,7 @@ export default function Grid({posts}: Props){
             <button
               className="border text-sm sm:text-lg border-transparent px-3 mx-3 rounded-full h-fit w-fit bg-gray-400"
               onClick={() => {
-                console.log("previous");
+                // console.log("previous");
                 if (pagenum > 1) {
                   setPagenum(pagenum - 1);
                 }
@@ -51,13 +51,13 @@ export default function Grid({posts}: Props){
             <button
               className="border text-sm sm:text-lg border-transparent px-3 mx-3 rounded-full h-fit w-fit bg-gray-400"
               onClick={() => {
-                console.log("previous");
+                // console.log("previous");
                 if (pagenum < Math.ceil(posts.length / PAGE_SIZE))
                   setPagenum(pagenum + 1);
               }}
               disabled={pagenum === Math.ceil(posts.length / PAGE_SIZE)}
             >
-              Next &#x21d1;
+              Next &#8658;;
             </button>
           </div>
         </div>

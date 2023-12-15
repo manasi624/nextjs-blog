@@ -18,7 +18,7 @@ export default function Login() {
   const {user, loading, error} = useSelector((state:RootState) => state.user);
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(creds)
+    // console.log(creds)
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
@@ -28,12 +28,12 @@ export default function Login() {
       if (userNew != null) {
         const { email, displayName, uid } = userNew;
         dispatch(loginUser({ email, username: displayName, uid }));
-        console.log(
-          "setting user",
-          userNew.uid,
-          userNew.email,
-          userNew.displayName
-        );
+        // console.log(
+        //   "setting user",
+        //   userNew.uid,
+        //   userNew.email,
+        //   userNew.displayName
+        // );
       }
     });
   }, [loading, dispatch]);
@@ -44,7 +44,7 @@ export default function Login() {
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
       if (creds.email && creds.password.length >= 6) {
-        console.log(creds);
+        // console.log(creds);
         signInWithEmailAndPassword(auth, creds.email, creds.password)
           .then((userCredential) => {
             const user = userCredential.user;
