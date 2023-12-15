@@ -33,8 +33,7 @@ export default function Post({params}: {params: {id:string}}) {
       setSelected(temp || null);
     };
 
-    fetchDt();
-  }, [dispatch, postId, posts]);
+    fetchDt();}, [dispatch, postId, posts]);
 
     useEffect(() => {
       if(!user.uid){
@@ -42,7 +41,7 @@ export default function Post({params}: {params: {id:string}}) {
         toast.warn("Login Needed !", {
           position: toast.POSITION.BOTTOM_LEFT,
         });
-        router.back();
+        router.push('/login');
       }
     }, [user, dispatch]);
 
@@ -118,7 +117,7 @@ export default function Post({params}: {params: {id:string}}) {
         <div className="flex flex-col md:flex-row mx-auto w-auto rounded-lg shadow-lg overflow-hidden">
           <div className="flex-shrink-0 flex items-center justify-center">
             <Image
-              className="h-48 w-full object-cover rounded-md"
+              className=" w-full object-cover rounded-md"
               width={500}
               height={400}
               src="https://source.unsplash.com/featured/500x400"
@@ -150,7 +149,7 @@ export default function Post({params}: {params: {id:string}}) {
                 <a href={dummyCard.author.href}>
                   <span className="sr-only">{dummyCard.author.name}</span>
                   <Image
-                    className="h-10 w-10 rounded-full"
+                    className=" rounded-full"
                     height={15}
                     width={15}
                     src={character}

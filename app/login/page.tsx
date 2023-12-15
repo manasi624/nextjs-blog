@@ -7,7 +7,7 @@ import pplogo from "../../static/pplogo.png"
 import { User } from "@/typing";
 import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/features/userSlice";
@@ -22,20 +22,9 @@ export default function Login() {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
-  // Updating User to state after login
-  const dispatch = useDispatch();
-  useEffect(() => {
-    onAuthStateChanged(auth, (userNew) => {
-      if (userNew != null) {
-        const { email, displayName, uid } = userNew;
-        dispatch(loginUser({ email, username: displayName, uid }));
-
-      }
-    });
-  }, [loading, dispatch]);
-
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   // Sign in function using firebase email and password
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
@@ -50,13 +39,17 @@ export default function Login() {
               position: toast.POSITION.BOTTOM_LEFT,
             });
 
+            if(user.uid){
+              const { email, displayName, uid } = user;
+              dispatch(loginUser({ email, username: displayName, uid }));
+            }
             router.back();
           })
           .catch((error) => {
-            const errorCode = error.code;
-              toast.error("Invalid Credentials !", {
-                position: toast.POSITION.BOTTOM_LEFT,
-              });
+            const errorMessage = error.code.split("/")[1];
+            toast.error(errorMessage, {
+              position: toast.POSITION.BOTTOM_LEFT,
+            });
 
           });
       } else {
@@ -75,7 +68,7 @@ export default function Login() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col items-center justify-center bg-gray-100"
+      className="min-h-screen w-screen flex flex-col items-center justify-center bg-gray-100"
     >
       <Link href="/">
         <Image
@@ -101,7 +94,6 @@ export default function Login() {
               id="email"
               name="email"
               className="mt-1 p-2 w-full border rounded-md"
-              placeholder="Enter your email"
               value={creds.email}
               onChange={changeHandler}
             />
@@ -118,7 +110,6 @@ export default function Login() {
               id="password"
               name="password"
               className="mt-1 p-2 w-full border rounded-md"
-              placeholder="Enter your password"
               value={creds.password}
               onChange={changeHandler}
             />

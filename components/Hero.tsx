@@ -12,7 +12,7 @@ export default function Hero() {
       viewport={{ once: true }}
       className=" max-w-7xl flex flex-col space-y-0 items-center justify-center text-center z-0 px-8 mx-auto"
     >
-      <div className="text-center w-[400px] md:w-[600px] lg:w-[800px] z-20">
+      <div className="text-center w-[400px] md:w-[600px] lg:w-[800px] z-20 py-4">
         <div className="flex flex-col items-center">
           <Tag
             tagline="Matching talent with Opportunity"
@@ -23,7 +23,7 @@ export default function Hero() {
           Let's Enhance <br /> Gaming 🎮 Industry
         </div>
         <h2
-          className="text-sm sm:text-xl mt-3 mx-8"
+          className="text-sm sm:text-xl my-3 mx-8"
           style={{ color: "rgb(46, 46, 46)" }}
         >
           WE HELP PROFESSIONALS AND BUSINESSES IN THE GAMING INDUSTRY
@@ -32,7 +32,7 @@ export default function Hero() {
           <Link href={"/posts"} className="w-fit h-fit bg-orange-400 p-2 m-2 rounded-lg shadow-sm">
             <b>Get Started, It's free</b>
           </Link>
-          <p className="text-sm text-stone-600">
+          <p className="text-sm text-stone-600 mt-2">
             Free 14 days trials,no credit card needed
           </p>
         </div>

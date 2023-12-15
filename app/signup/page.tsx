@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import pplogo from "../../static/pplogo.png";
 import { User } from "@/typing";
-import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../firebase"
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,20 +31,6 @@ export default function SignUp() {
 
   // Checking auth state just after signup or completion of loading
   const dispatch = useDispatch();
-  useEffect(() => {
-    onAuthStateChanged(auth, (userNew) => {
-      if (userNew != null) {
-        const { email, displayName, uid } = userNew;
-        dispatch(loginUser({ email, username: displayName, uid }));
-        // console.log(
-        //   "setting user",
-        //   userNew.uid,
-        //   userNew.email,
-        //   userNew.displayName
-        // );
-      }
-    });
-  }, [loading, dispatch]);
 
   // Sign up function using firebase email and password
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
@@ -53,11 +39,15 @@ export default function SignUp() {
       createUserWithEmailAndPassword(auth, creds.email, creds.password)
         .then((userCredential) => {
           const user = userCredential.user;
-
           // Success
           toast.success("Signup Successfull !", {
             position: toast.POSITION.BOTTOM_LEFT,
           });
+          
+          if(user.uid){
+            const { email, displayName, uid } = user;
+            dispatch(loginUser({ email, username: displayName, uid }));
+          }
           if (auth.currentUser) {
             // UpdateProfile not working 😅
             updateProfile(auth.currentUser, { displayName: creds.username });
@@ -65,8 +55,7 @@ export default function SignUp() {
           router.push("/posts");
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          const errorMessage = (error.code).split("/")[1];
           toast.warn(errorMessage, {
             position: toast.POSITION.BOTTOM_LEFT,
           });
@@ -87,7 +76,7 @@ export default function SignUp() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col items-center justify-center bg-gray-100"
+      className="min-h-screen w-screen flex flex-col items-center justify-center bg-gray-100"
     >
       <Link href="/">
         <Image

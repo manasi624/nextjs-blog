@@ -7,12 +7,17 @@ import Grid from "@/components/Grid";
 import { AppDispatch, RootState } from "../store";
 import LoadingCard from "@/components/LoadingCard";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 
 export default function Posts() {
 
   const dispatch:AppDispatch = useDispatch();
+  const router = useRouter();
   const { posts, loading, error } = useSelector((state: RootState) => state.data);
+  const {user, loading:userLoading, error:userError} = useSelector((state:RootState) => state.user);
+  const [data, setData] = useState<Post[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(()=>{
     // Only load posts if required
@@ -24,9 +29,17 @@ export default function Posts() {
     setData(posts);
   }, [posts])
 
+    useEffect(() => {
+      if (!user.uid) {
+        // Not permitted to view posts, if not logged in
+        toast.warn("Login Needed !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
+        router.push('/login');
+      }
+    }, [dispatch, user]);
 
-  const [data, setData] = useState<Post[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+
 
   // Handlesearch will not modify posts, it will use data state (temporary)
   const handleSearch = (query: string) => {
@@ -53,7 +66,8 @@ export default function Posts() {
         <div className="flex m-4 p-4">
           <input
             className="text-base w-full shadow-md bg-red-50 p-2 rounded-lg"
-            value=""
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
             className="ml-3 bg-orange-400 p-2 rounded-lg shadow-sm"
