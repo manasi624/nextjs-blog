@@ -6,6 +6,7 @@ import { fetchAsyncPosts, getPostById } from "@/features/dataSlice";
 import Grid from "@/components/Grid";
 import { AppDispatch, RootState } from "../store";
 import LoadingCard from "@/components/LoadingCard";
+import { toast } from "react-toastify";
 
 
 export default function Posts() {
@@ -14,7 +15,9 @@ export default function Posts() {
   const { posts, loading, error } = useSelector((state: RootState) => state.data);
 
   useEffect(()=>{
-    dispatch(fetchAsyncPosts());
+    if(posts.length === 0 || !posts){
+      dispatch(fetchAsyncPosts());
+    }
   }, [dispatch])
   useEffect(()=>{
     setData(posts);
@@ -33,7 +36,6 @@ export default function Posts() {
       );
     }
     setData(filtered);
-    // console.log("data", data);
   };
 
   useEffect(()=>{
@@ -55,6 +57,9 @@ export default function Posts() {
 
 
   if (error) {
+    toast.error(error, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
     return <div className="text-center mx-auto my-10 text-xl "><b>{error}</b></div>;
   }
 

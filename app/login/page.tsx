@@ -1,5 +1,5 @@
 "use client"
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,32 +7,65 @@ import pplogo from "../../static/pplogo.png"
 import { User } from "@/typing";
 import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "@/features/userSlice";
+import { RootState } from "../store";
 
 export default function Login() {
   const [creds, setCreds] = useState<User>({uid:"", email:"", password:"", username:""});
+  const {user, loading, error} = useSelector((state:RootState) => state.user);
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(creds)
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (userNew) => {
+      if (userNew != null) {
+        const { email, displayName, uid } = userNew;
+        dispatch(loginUser({ email, username: displayName, uid }));
+        console.log(
+          "setting user",
+          userNew.uid,
+          userNew.email,
+          userNew.displayName
+        );
+      }
+    });
+  }, [loading, dispatch]);
+
+
   const router = useRouter();
 
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (creds.email && creds.password.length >= 6) {
-      signInWithEmailAndPassword(auth, creds.email, creds.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          router.back();
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(error);
+      if (creds.email && creds.password.length >= 6) {
+        console.log(creds);
+        signInWithEmailAndPassword(auth, creds.email, creds.password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            toast.success("Logged in Successfully !", {
+              position: toast.POSITION.BOTTOM_LEFT,
+            });
+
+            router.back();
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+              toast.error("Invalid Credentials !", {
+                position: toast.POSITION.BOTTOM_LEFT,
+              });
+
+          });
+      } else {
+        toast.warn("Invalid Credentials !", {
+          position: toast.POSITION.BOTTOM_LEFT,
         });
-    }
+      }
   };
 
 

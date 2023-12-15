@@ -9,6 +9,7 @@ import { fetchAsyncPosts } from "@/features/dataSlice";
 import Tag from "@/components/Tag";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 
@@ -36,9 +37,11 @@ export default function Post({params}: {params: {id:string}}) {
 
     useEffect(() => {
       if(!user.uid){
+        toast.warn("Login Needed !", {
+          position: toast.POSITION.BOTTOM_LEFT,
+        });
         router.back();
       }
-      console.log(user);
     }, [user, dispatch]);
 
 

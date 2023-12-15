@@ -4,6 +4,8 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Providers } from './Providers'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +33,7 @@ export default function RootLayout({
               {children}
             </div>
             <Footer />
+            <ToastContainer autoClose={4000}/>
           </div>
         </Providers>
       </body>

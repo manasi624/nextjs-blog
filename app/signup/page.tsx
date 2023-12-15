@@ -1,15 +1,17 @@
 "use client";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import pplogo from "../../static/pplogo.png";
 import { User } from "@/typing";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import {auth} from "../firebase"
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
+import { toast } from "react-toastify";
+import { loginUser } from "@/features/userSlice";
 
 export default function SignUp() {
   const [creds, setCreds] = useState<User>({uid:"", email:"", password:"", username:""});
@@ -20,6 +22,21 @@ export default function SignUp() {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (userNew) => {
+      if (userNew != null) {
+        const { email, displayName, uid } = userNew;
+        dispatch(loginUser({ email, username: displayName, uid }));
+        console.log(
+          "setting user",
+          userNew.uid,
+          userNew.email,
+          userNew.displayName
+        );
+      }
+    });
+  }, [loading, dispatch]);
 
   const HandleSignup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +44,10 @@ export default function SignUp() {
       createUserWithEmailAndPassword(auth, creds.email, creds.password)
         .then((userCredential) => {
           const user = userCredential.user;
+
+          toast.success("Signup Successfull !", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
           if(auth.currentUser){
             updateProfile(auth.currentUser, { displayName: creds.username });
           }
@@ -35,7 +56,14 @@ export default function SignUp() {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(error);
+          toast.warn(errorMessage, {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        });
+    }else{
+      setCreds({ uid: "", email: "", password: "", username: "" });
+        toast.warn("Invalid Credentials !", {
+          position: toast.POSITION.BOTTOM_LEFT,
         });
     }
   };
