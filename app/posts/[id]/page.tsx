@@ -132,13 +132,13 @@ export default function Post({params}: {params: {id:string}}) {
                 </a>
               </p>
               <a href="#" className="block mt-2">
-                <div className="text-xl font-semibold text-gray-900">
+                <div className="text-xl font-semibold text-gray-900 my-3 sm:my-auto">
                   <Tag
                     tagline={selected?.title || ""}
                     color="rgb(254 233 203)"
                   />
                 </div>
-                <p className="mt-3 text-base text-gray-500">
+                <p className="my-5 sm:my-2 text-base text-gray-500">
                   {selected?.body}
                   {selected?.body}
                 </p>
