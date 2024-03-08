@@ -63,7 +63,7 @@ export default function Posts() {
   if (loading) {
     return (
       <div className="flex flex-col">
-        <div className="flex m-4 p-4">
+        <div className="flex m-4 p-4 search" id="search">
           <input
             className="text-base text-black w-full shadow-md bg-light_bg_skin dark:bg-dark_bg_skin p-2 rounded-lg"
             value={searchQuery}

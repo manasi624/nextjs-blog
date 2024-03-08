@@ -108,7 +108,7 @@ export default function Post({params}: {params: {id:string}}) {
   return (
     <div className="text-black dark:text-white">
       <div className="max-w-7xl flex w-screen px-10 flex-col items-left justify-center mb-8">
-        <Link href={"/posts"} className="hover:shadow-sm">
+        <Link href={"/posts"}id="back" className="hover:shadow-sm back">
           <Tag tagline="&#x21d0; Back to Posts" color="rgb(241 127 61 / 15%)" />
         </Link>
         <div className="flex flex-col md:flex-row mx-auto w-auto rounded-lg shadow-lg overflow-hidden">

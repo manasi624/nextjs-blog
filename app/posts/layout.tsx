@@ -1,6 +1,8 @@
 
 "use client";
 import Banner from "@/components/Banner";
+import dynamic from "next/dynamic";
+const Tour = dynamic(() => import("../../components/tour2"), { ssr: false });
 
 export default function DashboardLayout({
   children,
@@ -9,7 +11,8 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      <div className="text-black dark:text-white flex flex-col mx-auto dark:text-white">
+      <Tour />
+      <div className="text-black dark:text-white flex flex-col mx-auto">
         <div className="mt-32">
           <Banner />
         </div>

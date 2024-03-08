@@ -58,7 +58,7 @@ function Header() {
 
   return (
     <header className="w-screen bg-opacity-25 bg-light_bg_skin dark:bg-dark_bg_skin text-black dark:text-white flex flex-row items-center justify-between space-x-2 font-bold px-4 md:px-10 py-5 z-100">
-      <div className="flex items-center space-x-2 z-100">
+      <div className="flex items-center space-x-2 z-100 logo" id="logo">
         <Link href="/">
           <Image
             className="rounded-full"
@@ -68,7 +68,7 @@ function Header() {
             alt="logo"
           />
         </Link>
-        <Link href="/">
+        <Link href="/" id="" className="">
           <h3 className="text-xl hidden md:block md:text-2xl">RisingStar</h3>
         </Link>
       </div>
@@ -85,7 +85,7 @@ function Header() {
             href="/login"
             className="space-x-3 bg-light_bg_skin dark:bg-dark_bg_gray text-base border shadow-xl hover:cursor-pointer hover:shadow-sm transition-all duration-200 px-4 py-1 rounded-lg"
           >
-            <h2 className="text-sm">Login</h2>
+            <h2 className="text-sm login" id="login">Login</h2>
           </Link>
         )}
         {!loading && user.uid !== "" && (

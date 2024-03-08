@@ -31,7 +31,8 @@ export default function Card({post}: Props){
       <div
         onClick={handleRedirect}
         key={post.title}
-        className="text-black dark:text-white flex flex-col rounded-lg shadow-lg overflow-hidden hover:cursor-pointer hover:shadow-sm"
+        id="card"
+        className="text-black card dark:text-white flex flex-col rounded-lg shadow-lg overflow-hidden hover:cursor-pointer hover:shadow-sm"
       >
         {/* <div className="flex-shrink-0">
           <Image

@@ -6,6 +6,12 @@ import Hero from '@/components/Hero';
 export default function Home() {
   return (
     <main className="flex flex-col bg-light_bg dark:bg-dark_bg items-center justify-between p-24 snap-x snap-mandatory">
+
+      <head>
+      	<link rel="stylesheet" href="shepherd.js/dist/css/shepherd.css"/>
+        <script src="shepherd.js/dist/js/shepherd.min.js"></script>
+      </head>
+
       <div className="mt-10">
         <div className="m-4 z-10 snap-start">
           <Hero />

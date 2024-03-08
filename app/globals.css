@@ -45,3 +45,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* You can use the --secondary-color for other elements as needed. */
+
+
+.tour-btn {
+  border-radius: 0 !important;
+}
+
+.tour-btn-primary {
+  background-color: black !important;
+  color: white !important;
+}
+
+.tour-btn-secondary {
+  background-color: white !important;
+  color: black !important;
+}
+
+.tour-dialog {
+  font-family: "Caveat";
+}
+
+.shepherd-text {
+  font-size: 20px !important;
+}
+
+.shepherd-header {
+  background-color: black !important;
+  color: white !important;
+}
