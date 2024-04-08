@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import LoadingImageComponent from "@/components/LoadingImageComponent";
 import { TwitterShareButton } from "react-share";
 import { NextSeo } from 'next-seo';
+import Head from "next/head";
 
 
 // Single post page
@@ -112,31 +113,31 @@ export default function OnePost({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <NextSeo
-        title={selected?.title || 'Default Title'}
-        description={selected?.body || 'Default Description'}
-        canonical="https://myblog-vert-zeta.vercel.app"
-        openGraph={{
-          url: `https://myblog-vert-zeta.vercel.app/posts/${selected?.id}`,
-          title: selected?.title || 'Default Title',
-          description: selected?.body || 'Default Description',
-          images: [
-            {
-              url: 'https://source.unsplash.com/featured/200x200',
-              alt: 'Image Alt Text',
-              width:200,
-              height:200,
-              type:"image/webp"
-            },
-          ],
-          site_name: 'Prathameshs Blog',
-        }}
-        twitter={{
-          handle: '@handle',
-          site: '@site',
-          cardType: 'summary_large_image',
-        }}
-      />
+      <Head>
+      	<link rel="stylesheet" href="shepherd.js/dist/css/shepherd.css"/>
+        <script src="shepherd.js/dist/js/shepherd.min.js"></script>
+        <meta
+        property='og:image'
+        content='https://source.unsplash.com/featured/200x200'
+        />
+        <meta 
+          property='op:description'
+          content='This is Blog By Prathamesh Pawar, share it.'
+        />
+        <meta name='twitter:card' content='summary_large_image'/>
+        <meta name='twitter:site' content='@PrthameshPawar'/>
+        <meta name='twitter:title' content='Worlds best blog'/>
+        <meta name='twitter:description'
+        content='Read beautiful Blogs everyday'
+        />
+        <meta 
+        name='twitter:image'
+        content='https://source.unsplash.com/featured/200x200'
+        />
+        <meta name='twitter:url'
+        content='https://myblog-vert-zeta.vercel.app/'
+        />
+      </Head>
       <div className="text-black dark:text-white">
         <div className="max-w-7xl flex w-screen px-10 flex-col items-left justify-center mb-8">
           <Link href={"/posts"} id="back" className="hover:shadow-sm back">
