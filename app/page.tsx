@@ -2,15 +2,37 @@
 import About from '@/components/About';
 import Blog from '@/components/Blog';
 import Hero from '@/components/Hero';
+import Head from 'next/head';
 
 export default function Home() {
   return (
     <main className="flex flex-col bg-light_bg dark:bg-dark_bg items-center justify-between p-24 snap-x snap-mandatory">
 
-      <head>
+      <Head>
       	<link rel="stylesheet" href="shepherd.js/dist/css/shepherd.css"/>
         <script src="shepherd.js/dist/js/shepherd.min.js"></script>
-      </head>
+        <meta
+        property='og:image'
+        content='https://source.unsplash.com/featured/200x200'
+        />
+        <meta 
+          property='op:description'
+          content='This is Blog By Prathamesh Pawar, share it.'
+        />
+        <meta name='twitter:card' content='summary_large_image'/>
+        <meta name='twitter:site' content='@PrthameshPawar'/>
+        <meta name='twitter:title' content='Worlds best blog'/>
+        <meta name='twitter:description'
+        content='Read beautiful Blogs everyday'
+        />
+        <meta 
+        name='twitter:image'
+        content='https://source.unsplash.com/featured/200x200'
+        />
+        <meta name='twitter:url'
+        content='https://myblog-vert-zeta.vercel.app/'
+        />
+      </Head>
 
       <div className="mt-10">
         <div className="m-4 z-10 snap-start">
