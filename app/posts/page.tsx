@@ -30,7 +30,7 @@ export default function Posts() {
   }, [posts])
 
     useEffect(() => {
-      if (!user.uid) {
+    if (!user.uid) {
         // Not permitted to view posts, if not logged in
         toast.warn("Login Needed !", {
           position: toast.POSITION.BOTTOM_LEFT,

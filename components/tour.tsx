@@ -15,9 +15,9 @@ const tourOptions = {
 function TourInstance() {
   const tour = useContext(ShepherdTourContext);
 
-  useEffect(() => {
-    if (tour) tour.start();
-  }, [tour]);
+  // useEffect(() => {
+  //   if (tour) tour.start();
+  // }, [tour]);
 
   return <></>;
 }
