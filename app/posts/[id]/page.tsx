@@ -119,13 +119,21 @@ export default function OnePost({ params }: { params: { id: string } }) {
   return (
     <>
       <Head>
-        <title>{selected?.title}</title>
-        <meta name="description" content={selected?.body} />
+        <title>My Blog</title>
+        <meta name="description" content="Chek out my blog" />
+
+        <meta property="og:url" content="https://myblog-vert-zeta.vercel.app/posts/3" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="My Blog" />
+        <meta property="og:description" content="Chek out my blog" />
+        <meta property="og:image" content="https://opengraph.b-cdn.net/production/documents/9227961c-2855-4610-a260-c617aa0207a0.png?token=iq0amc9tszxZImc_IWpD4IR2kpz5640rBI1uxM1vOLk&height=521&width=815&expires=33248633078" />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@prathameshpawar" /> 
-        <meta name="twitter:title" content={selected?.title} />
-        <meta name="twitter:description" content={selected?.body} />
-        <meta name="twitter:image" content="https://images.unsplash.com/photo-1712554652565-7c8bf2052e05?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /> 
+        <meta property="twitter:domain" content="myblog-vert-zeta.vercel.app" />
+        <meta property="twitter:url" content="https://myblog-vert-zeta.vercel.app/posts/3" />
+        <meta name="twitter:title" content="My Blog" />
+        <meta name="twitter:description" content="Chek out my blog" />
+        <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/documents/9227961c-2855-4610-a260-c617aa0207a0.png?token=iq0amc9tszxZImc_IWpD4IR2kpz5640rBI1uxM1vOLk&height=521&width=815&expires=33248633078" />
       </Head>
 
       <div className="text-black dark:text-white">
