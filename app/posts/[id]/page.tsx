@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 import LoadingImageComponent from "@/components/LoadingImageComponent";
 import { TwitterShareButton } from "react-share";
 import { NextSeo } from 'next-seo';
+import { Metadata, ResolvingMetadata } from "next";
+import ShareTwitter from "@/components/ShareTwitter";
 import Head from "next/head";
 
 
@@ -111,29 +113,21 @@ export default function OnePost({ params }: { params: { id: string } }) {
   }
 
 
+
+
+
   return (
     <>
       <Head>
-        {/* HTML Meta Tags */}
-        <title>This is Blog By Prathamesh Pawar, share it.</title>
-        <meta name="description" content="Read beautiful Blogs everyday" />
-
-        {/* Facebook Meta Tags */}
-        <meta property="og:url" content="https://myblog-vert-zeta.vercel.app" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="This is Blog By Prathamesh Pawar, share it." />
-        <meta property="og:description" content="Read beautiful Blogs everyday" />
-        <meta property="og:image" content="https://opengraph.b-cdn.net/production/documents/9227961c-2855-4610-a260-c617aa0207a0.png?token=BIWWiAYN9bg1XTuEYTjD3FsDxeNLLVPoaO0CgwCSMwc&height=521&width=815&expires=33248594052" />
-
-        {/* Twitter Meta Tags */}
+        <title>{selected?.title}</title>
+        <meta name="description" content={selected?.body} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="myblog-vert-zeta.vercel.app" />
-        <meta property="twitter:url" content="https://myblog-vert-zeta.vercel.app" />
-        <meta name="twitter:title" content="This is Blog By Prathamesh Pawar, share it." />
-        <meta name="twitter:description" content="Read beautiful Blogs everyday" />
-        <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/documents/9227961c-2855-4610-a260-c617aa0207a0.png?token=BIWWiAYN9bg1XTuEYTjD3FsDxeNLLVPoaO0CgwCSMwc&height=521&width=815&expires=33248594052" />
-
+        <meta name="twitter:site" content="@prathameshpawar" /> 
+        <meta name="twitter:title" content={selected?.title} />
+        <meta name="twitter:description" content={selected?.body} />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1712554652565-7c8bf2052e05?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /> 
       </Head>
+
       <div className="text-black dark:text-white">
         <div className="max-w-7xl flex w-screen px-10 flex-col items-left justify-center mb-8">
           <Link href={"/posts"} id="back" className="hover:shadow-sm back">
@@ -171,12 +165,7 @@ export default function OnePost({ params }: { params: { id: string } }) {
                   </p>
                 </a>
               </div>
-              <TwitterShareButton
-                url={`https://myblog-vert-zeta.vercel.app/posts/${selected?.id}`}
-                title={`Post ${selected?.id}`}
-              >
-                Share On Twitter
-              </TwitterShareButton>
+              <ShareTwitter selected={selected} />
               <div className="mt-6 flex items-center">
                 <div className="flex-shrink-0">
                   <a href={dummyCard.author.href}>
