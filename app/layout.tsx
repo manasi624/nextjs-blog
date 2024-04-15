@@ -50,7 +50,7 @@ export default function RootLayout({
         <meta property="og:description" content="Read beautiful Blogs everyday" />
         <meta property="og:image" content="https://opengraph.b-cdn.net/production/documents/9227961c-2855-4610-a260-c617aa0207a0.png?token=BIWWiAYN9bg1XTuEYTjD3FsDxeNLLVPoaO0CgwCSMwc&height=521&width=815&expires=33248594052" />
 
-        {/* Twitter Meta Tags */}
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="myblog-vert-zeta.vercel.app" />
         <meta property="twitter:url" content="https://myblog-vert-zeta.vercel.app" />
