@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAnqyPmznrNVUJ17hE5NLZSQiVMp7qfWeA",
-    authDomain: "blog-af9a0.firebaseapp.com",
-    projectId: "blog-af9a0",
-    storageBucket: "blog-af9a0.appspot.com",
-    messagingSenderId: "486242583673",
-    appId: "1:486242583673:web:4995f4df61d1a57895c0a8"
+    apiKey: "AIzaSyAJu80igs8IhrTIFSYPAZpqPvy-CN6a1FE",
+    authDomain: "mansis-blg.firebaseapp.com",
+    projectId: "mansis-blg",
+    storageBucket: "mansis-blg.appspot.com",
+    messagingSenderId: "815427604173",
+    appId: "1:815427604173:web:2961fef97249c42293e384"
 };
 
 // Initialize Firebase

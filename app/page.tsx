@@ -10,7 +10,7 @@ export default function Home() {
 
       <Head>
         {/* HTML Meta Tags */}
-        <title>This is Blog By Prathamesh Pawar, share it.</title>
+        <title>This is Blog By Mansi, share it.</title>
         <meta name="description" content="Read beautiful Blogs everyday" />
 
         {/* Facebook Meta Tags */}

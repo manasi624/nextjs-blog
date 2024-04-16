@@ -26,7 +26,7 @@ export const steps: ShepherdOptionsWithType[] = [
       <div>
       <p><b>Blogstar </b> is minimalistic Reading blog.</p>
       <br/>
-      <p>This is Prathamesh's blog.</p>
+      <p>This is Mansi's blog.</p>
       <br/>
       <p>do you need a guide?</p>
       </div>
